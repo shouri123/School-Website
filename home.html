@@ -101,7 +101,6 @@
 
         /* Card Hover Effects */
         .hover-card {
-            /* Handled by GSAP now for smoother feel, but keeping basic transition as fallback */
             transition: box-shadow 0.4s ease;
         }
         
@@ -125,9 +124,9 @@
 
     <!-- Navigation (Floating Pill) -->
     <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] max-w-[1400px] z-50 transition-all duration-300 opacity-0 -translate-y-10">
-        <div class="bg-white/80 backdrop-blur-xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-full px-6 py-3 flex justify-between items-center">
+        <div class="bg-white/80 backdrop-blur-xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-full px-6 py-3 flex justify-between items-center relative">
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-2 group">
+            <a href="#" class="flex items-center gap-2 group z-50">
                 <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl group-hover:rotate-12 transition-transform duration-300">S</div>
                 <span class="font-bold text-lg tracking-tight">Sripur<span class="text-orange-500"> High School</span></span>
             </a>
@@ -147,7 +146,8 @@
                     <div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
                         <div class="p-2">
                             <a href="#" class="block px-4 py-2.5 rounded-xl hover:bg-red-50 text-sm text-gray-600 hover:text-red-600 font-medium transition-colors">Principal's Desk</a>
-                            <a href="#" class="block px-4 py-2.5 rounded-xl hover:bg-red-50 text-sm text-gray-600 hover:text-red-600 font-medium transition-colors">School History</a>
+                            <!-- Updated Link to History Section -->
+                            <a href="#history" class="block px-4 py-2.5 rounded-xl hover:bg-red-50 text-sm text-gray-600 hover:text-red-600 font-medium transition-colors">School History</a>
                             <a href="#" class="block px-4 py-2.5 rounded-xl hover:bg-red-50 text-sm text-gray-600 hover:text-red-600 font-medium transition-colors">Vision & Mission</a>
                             <a href="#" class="block px-4 py-2.5 rounded-xl hover:bg-red-50 text-sm text-gray-600 hover:text-red-600 font-medium transition-colors">Administration</a>
                         </div>
@@ -188,13 +188,35 @@
             </div>
 
             <!-- CTA -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 z-50">
                 <a href="#admissions" class="hidden md:block bg-black text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-orange-500 transition-colors duration-300 shadow-lg shadow-orange-500/20">
                     Apply 2026
                 </a>
-                <button class="md:hidden p-2">
+                <button id="mobile-menu-btn" class="md:hidden p-2 relative z-50">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-40 translate-x-full hidden md:hidden flex-col pt-32 px-6">
+            <div class="flex flex-col gap-6 text-2xl font-bold">
+                <a href="#home" class="mobile-link text-black">Home</a>
+                
+                <div class="flex flex-col gap-2">
+                    <span class="text-gray-400 text-sm uppercase tracking-widest">About</span>
+                    <a href="#" class="text-red-500 pl-4 text-xl">Principal's Desk</a>
+                    <a href="#history" class="text-red-500 pl-4 text-xl">School History</a>
+                    <a href="#" class="text-red-500 pl-4 text-xl">Vision & Mission</a>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <span class="text-gray-400 text-sm uppercase tracking-widest">Academics</span>
+                    <a href="#" class="text-green-500 pl-4 text-xl">Curriculum</a>
+                    <a href="#" class="text-green-500 pl-4 text-xl">Results</a>
+                </div>
+
+                <a href="#admissions" class="bg-black text-white py-4 rounded-xl text-center mt-4">Apply Now</a>
             </div>
         </div>
     </nav>
@@ -337,7 +359,8 @@
                     </div>
                 </div>
 
-                <button class="mt-10 group flex items-center gap-3 text-lg font-bold border-b-2 border-black pb-1 hover:text-orange-600 hover:border-orange-600 transition-all opacity-0 translate-y-10 about-reveal">
+                <!-- Updated Button with ID for JS -->
+                <button id="read-story-btn" class="mt-10 group flex items-center gap-3 text-lg font-bold border-b-2 border-black pb-1 hover:text-orange-600 hover:border-orange-600 transition-all opacity-0 translate-y-10 about-reveal">
                     Read Our Story 
                     <i data-lucide="arrow-right" class="group-hover:translate-x-2 transition-transform"></i>
                 </button>
@@ -345,6 +368,60 @@
         </div>
     </section>
 
+    <!-- History Section -->
+    <section id="history" class="py-24 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-red-500 font-bold tracking-widest uppercase text-sm">Our Journey</span>
+                <h2 class="text-4xl md:text-5xl font-black mt-2">Decades of <span class="text-orange-500">Excellence</span></h2>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical Line -->
+                <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gray-100 rounded-full"></div>
+                
+                <!-- Item 1 (1968) -->
+                <div class="history-item relative flex flex-col md:flex-row justify-between items-center mb-12 w-full">
+                    <div class="md:w-5/12 md:text-right md:pr-12 pl-16 md:pl-0 order-1 w-full text-left">
+                        <h3 class="text-2xl font-bold text-red-600">1968</h3>
+                        <p class="text-gray-500 mt-2">Established on February 2nd as Sripur Junior High School. Started with just 11 students and 3 dedicated teachers serving without salary.</p>
+                    </div>
+                    <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-red-500 rounded-full border-4 border-white shadow-md z-10 order-2 top-0 md:top-auto"></div>
+                    <div class="md:w-5/12 pl-8 order-3 hidden md:block"></div>
+                </div>
+
+                <!-- Item 2 (1974 - 1980) -->
+                 <div class="history-item relative flex flex-col md:flex-row justify-between items-center mb-12 w-full">
+                    <div class="md:w-5/12 text-right pr-8 order-1 hidden md:block"></div>
+                    <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-yellow-500 rounded-full border-4 border-white shadow-md z-10 order-2 top-0 md:top-auto"></div>
+                    <div class="md:w-5/12 md:pl-12 pl-16 order-3 w-full text-left">
+                         <h3 class="text-2xl font-bold text-yellow-600">1974 - 1980</h3>
+                        <p class="text-gray-500 mt-2">Received official recognition for classes 5 & 6 in 1974. By 1980, gained government affiliation up to class 8.</p>
+                    </div>
+                </div>
+                
+                 <!-- Item 3 (2000) -->
+                <div class="history-item relative flex flex-col md:flex-row justify-between items-center mb-12 w-full">
+                    <div class="md:w-5/12 md:text-right md:pr-12 pl-16 md:pl-0 order-1 w-full text-left">
+                        <h3 class="text-2xl font-bold text-green-600">2000</h3>
+                        <p class="text-gray-500 mt-2">A major milestone: The institution was upgraded to the Secondary (Madhyamik) level and renamed Sripur High School.</p>
+                    </div>
+                    <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-500 rounded-full border-4 border-white shadow-md z-10 order-2 top-0 md:top-auto"></div>
+                    <div class="md:w-5/12 pl-8 order-3 hidden md:block"></div>
+                </div>
+
+                <!-- Item 4 (2024) -->
+                 <div class="history-item relative flex flex-col md:flex-row justify-between items-center w-full">
+                    <div class="md:w-5/12 text-right pr-8 order-1 hidden md:block"></div>
+                    <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-orange-500 rounded-full border-4 border-white shadow-md z-10 order-2 top-0 md:top-auto"></div>
+                    <div class="md:w-5/12 md:pl-12 pl-16 order-3 w-full text-left">
+                         <h3 class="text-2xl font-bold text-orange-600">2024</h3>
+                        <p class="text-gray-500 mt-2">Launched 'Next Gen' curriculum focusing on Robotics, AI, and holistic development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Interactive Notice Board (Masonry) -->
     <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
@@ -474,6 +551,46 @@
         </div>
     </footer>
 
+    <!-- STORY MODAL (Hidden by default) -->
+    <div id="story-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="modal-backdrop"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl p-8 md:p-12 shadow-2xl transform scale-95 opacity-0" id="modal-content">
+            <button id="close-modal-btn" class="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 transition-colors z-50">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="prose prose-lg max-w-none">
+                <h2 class="text-3xl md:text-4xl font-black mb-8 border-b-2 border-orange-500 pb-4 inline-block">Our Journey</h2>
+                <div class="space-y-6 text-gray-700 leading-relaxed font-light text-justify">
+                    <p><strong class="text-black font-semibold">It was the year 1947.</strong> India gained independence. The country was partitioned. Bearing the agony of being uprooted, waves of people, rendered homeless, migrated from East Bengal to West Bengal. Thus began a new struggle for survival. It took several years to secure adequate food, clothing, and shelter. Once a semblance of stability was achieved, they felt the necessity to arrange for the education of the future generation.</p>
+                    
+                    <p>Consequently, schools began to spring up in various places. Most of these institutions were built through the initiative and financial contributions of local residents. Similarly, a few education enthusiasts of our Sripur village first established the Sripur Primary School. Then, exactly 50 years ago today, on <strong class="text-black font-semibold">February 2, 1968</strong>, Sripur Junior High School was established. It started with classes 5 and 6, totaling 11 students and three teachers who served without salary. The school will forever remember these students and teachers.</p>
+                    
+                    <p>Our school received official recognition for classes 5 and 6 in 1974. Classes 7 and 8 were subsequently introduced. Students from several neighboring villages began to gather in our school premises. Thereafter, receiving government affiliation up to class 8 in 1980 and up to the Secondary (Madhyamik) level in 2000, it was upgraded to <strong class="text-black font-semibold">Sripur High School</strong>.</p>
+                    
+                    <p>Behind this brief summary lies a vast history. We respectfully acknowledge the contribution of the villagers of Sripur in shaping this history. We are indebted to all the teachers who, since the school's inception, have taught students with dedication either without remuneration or for a nominal fee. We have endless gratitude for the guardians of the students, whose donations have gradually contributed to the expansion and beautification of the school building.</p>
+
+                    <p>We are grateful to the respected late MP Chitta Basu, respected MP Dipankar Mukherjee, and respected MP Sarala Maheshwari. They assisted in the construction of our school building using funds from their MP quotas. We are also grateful to the MLA of Madhyamgram, Sri Rathin Ghosh. He extends his helping hand whenever we are in need.</p>
+                    
+                    <p>Sripur Primary School—which we consider a part of ourselves—has always stood by us in times of need. Ignoring their own inconveniences, they allowed us to use their building during the construction of ours. We do not wish to distance them by merely offering formal thanks.</p>
+                    
+                    <p>Almost all students of our school come from low-income families. Due to various reasons, they have very limited opportunities to study at home. We can proudly say that we have consistently maintained the standard of education in our school. We ensure there is no lack of dedication in teaching our students.</p>
+
+                    <p>On this joyous day, we especially remember our three colleagues—respected Anima Sengupta, respected Ranjit Roy Chowdhury, and respected Manoj Banerjee. The contribution of Anima Sengupta, from the school's inception to her last working day, is unforgettable. We will forever respectfully remember the contributions made by our former Headmaster Ranjit Roy Chowdhury and our colleague Manoj Banerjee toward the development and progress of the school. These three are not amongst us today, but their invisible, luminous presence continues to inspire us.</p>
+                    
+                    <p>Today is a day of great joy for us. Through everyone’s collective effort, our school has secured a significant place in the educational landscape of Madhyamgram. We hope that with your cooperation, we will be able to progress even further in the future. The mantra with which we were initiated fifty years ago when our journey began, is the same mantra we hold dear today —</p>
+                    
+                    <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-orange-500 italic text-xl text-center text-gray-800 my-8">
+                        "Tamaso Ma Jyotirgamaya"<br>
+                        <span class="text-base text-gray-500 not-italic">(Lead us from darkness to light)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         lucide.createIcons();
 
@@ -567,6 +684,18 @@
             scrollTrigger: {
                 trigger: ".about-text-content",
                 start: "top 75%"
+            }
+        });
+
+        // --- HISTORY SECTION ---
+        gsap.from(".history-item", {
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            duration: 1,
+            scrollTrigger: {
+                trigger: "#history",
+                start: "top 70%"
             }
         });
 
@@ -688,6 +817,101 @@
                 nav.classList.remove('scale-95');
             }
         });
+
+        // --- MOBILE MENU LOGIC ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                gsap.to(mobileMenu, { x: 0, duration: 0.5, ease: "power4.out" });
+                mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6 text-black"></i>';
+                lucide.createIcons();
+            } else {
+                gsap.to(mobileMenu, { 
+                    x: "100%", 
+                    duration: 0.5, 
+                    ease: "power4.in",
+                    onComplete: () => {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('flex');
+                    }
+                });
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6 text-black"></i>';
+                lucide.createIcons();
+            }
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                gsap.to(mobileMenu, { 
+                    x: "100%", 
+                    duration: 0.5, 
+                    ease: "power4.in", 
+                    onComplete: () => {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('flex');
+                    }
+                });
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6 text-black"></i>';
+                lucide.createIcons();
+            });
+        });
+
+        // --- STORY MODAL LOGIC (New) ---
+        const readStoryBtn = document.getElementById('read-story-btn');
+        const storyModal = document.getElementById('story-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+
+        function openModal() {
+            storyModal.classList.remove('hidden');
+            storyModal.classList.add('flex');
+            // Lock body scroll
+            document.body.style.overflow = 'hidden';
+            
+            gsap.to(modalContent, {
+                scale: 1,
+                opacity: 1,
+                duration: 0.5,
+                ease: "back.out(1.2)"
+            });
+            
+            gsap.fromTo(modalBackdrop, 
+                { opacity: 0 }, 
+                { opacity: 1, duration: 0.5 }
+            );
+        }
+
+        function closeModal() {
+            gsap.to(modalContent, {
+                scale: 0.95,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.in"
+            });
+            
+            gsap.to(modalBackdrop, {
+                opacity: 0,
+                duration: 0.3,
+                onComplete: () => {
+                    storyModal.classList.add('hidden');
+                    storyModal.classList.remove('flex');
+                    document.body.style.overflow = ''; // Restore scroll
+                }
+            });
+        }
+
+        readStoryBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeModal);
+
     </script>
 </body>
 </html>
